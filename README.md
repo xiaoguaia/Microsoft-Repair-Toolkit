@@ -1,5 +1,7 @@
 # 🛠️ Microsoft Repair Toolkit
 
+📄 [English Documentation](README.en.md)
+
 一个一站式的 Windows 系统修复工具，专为解决 Microsoft Store 无法打开、系统服务被禁用（如 Windows Update）、以及系统文件损坏等问题设计。
 
 该工具基于 PowerShell 脚本实现，支持菜单操作、自动提权、一键修复，无需用户具备脚本知识，开箱即用！
