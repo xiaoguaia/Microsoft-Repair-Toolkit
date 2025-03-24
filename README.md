@@ -1,27 +1,66 @@
-# Windows Repair Tool (PowerShell + Batch)
+# 🛠️ Microsoft Repair Toolkit
 
-用于修复 Windows Store、系统服务（如 Windows Update）、执行 SFC / DISM 修复。
+一个一站式的 Windows 系统修复工具，专为解决 Microsoft Store 无法打开、系统服务被禁用（如 Windows Update）、以及系统文件损坏等问题设计。
+
+该工具基于 PowerShell 脚本实现，支持菜单操作、自动提权、一键修复，无需用户具备脚本知识，开箱即用！
+
+---
+
+## ✨ 功能特性
+
+- ✅ 修复 Windows Update、BITS 服务被禁用或权限错误问题
+- ✅ 一键恢复 Microsoft Store 应用
+- ✅ 自动执行 `SFC /scannow` 和 `DISM` 系统修复命令
+- ✅ 提供 `.bat` 启动器，自动获取管理员权限运行 PowerShell
+- ✅ 提供远程运行支持（通过 `irm | iex`）
+
+---
+
+## 📥 一键运行命令（无需下载 ZIP）
+
+```powershell
+irm "https://raw.githubusercontent.com/xiaoguaia/Microsoft-Repair-Toolkit/master/install.ps1" | iex
+```
+
+> 复制以上命令，在 PowerShell（管理员）中运行即可打开修复菜单
+
+---
 
 ## 📁 文件说明
 
-- `win_repair_tool.ps1`：主修复逻辑，PowerShell 脚本（UTF-8 编码）
-- `win_repair_tool_launcher.bat`：自动提权启动器，调用 PowerShell 脚本
-- `README.txt`：使用说明
+| 文件名                         | 描述                                       |
+| ------------------------------ | ------------------------------------------ |
+| `win_repair_tool.ps1`          | 主修复逻辑脚本（菜单、功能全）             |
+| `win_repair_tool_launcher.bat` | 自动提权的批处理脚本，执行 PowerShell 脚本 |
+| `install.ps1`                  | 在线一键运行支持                           |
+| `README.md`                    | 当前项目说明                               |
 
-## 🚀 使用方法
+---
 
-1. 解压此压缩包
-2. 右键点击 `win_repair_tool_launcher.bat` → 以管理员身份运行
-3. 按照菜单提示选择操作（修复服务 / Store / 执行系统检查）
+## 📦 使用方法（本地方式）
 
-## ✅ 功能菜单
+1. Clone 或下载 ZIP 到本地
+2. 右键 `win_repair_tool_launcher.bat` → **以管理员身份运行**
+3. 根据提示选择需要的操作（1-4）
 
-1. 修复系统服务（如 Windows Update / BITS）
-2. 恢复 Microsoft Store 应用
-3. 执行系统文件修复（SFC / DISM）
-4. 退出
+---
 
-## 🛠 注意事项
+## 🧪 支持系统
 
-- 请以管理员身份运行
-- 适用于 Windows 10 / 11
+- Windows 10 / 11
+- 支持家庭版 / 专业版 / 教育版
+- 不依赖第三方工具，纯系统调用
+
+---
+
+## 📄 开源许可
+
+本项目使用 [MIT License](LICENSE) 授权，欢迎 Fork、改进或二次开发，但请保留原始作者信息。
+
+---
+
+## ❤️ 致谢
+
+旨在解决日常系统问题，欢迎 Star & PR！
+
+---
