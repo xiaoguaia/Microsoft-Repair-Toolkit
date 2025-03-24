@@ -1,6 +1,6 @@
 # 🛠️ Microsoft Repair Toolkit
 
-📄 [中文说明](README.zh.md) | [English](README.en.md)
+📄 [中文说明](README.md) | [English](README.en.md)
 
 一个一站式的 Windows 系统修复工具，专为解决 Microsoft Store 无法打开、系统服务被禁用（如 Windows Update）、以及系统文件损坏等问题设计。
 
