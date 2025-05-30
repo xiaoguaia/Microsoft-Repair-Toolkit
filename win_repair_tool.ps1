@@ -81,6 +81,24 @@ Function Run-DISM {
     Write-Host "✅ 系统文件修复完成。" -ForegroundColor Green
 }
 
+
+Function Exit-Tool {
+    Write-Host "正在清理临时文件..." -ForegroundColor Yellow
+    $setAclPath = "$PSScriptRoot\SetACL.exe"
+    if (Test-Path $setAclPath) {
+        try {
+            Remove-Item $setAclPath -Force
+            Write-Host "✅ 已删除 SetACL.exe。" -ForegroundColor Green
+        }
+        catch {
+            Write-Host "⚠️ 无法删除 SetACL.exe，请手动清理。" -ForegroundColor Red
+        }
+    }
+    Write-Host "退出程序，再见！" -ForegroundColor Cyan
+}
+
+
+# 主菜单循环
 do {
     Show-Menu
     $choice = Read-Host "请输入选项编号（0-4）"
@@ -89,7 +107,7 @@ do {
         "1" { Fix-Services }
         "2" { Restore-Store }
         "3" { Run-DISM }
-        "4" { Write-Host "退出程序，再见！" -ForegroundColor Cyan }
+        "4" { Exit-Tool }
         default { Write-Host "无效选项，请重新输入。" -ForegroundColor Red }
     }
 } while ($choice -ne "4")
