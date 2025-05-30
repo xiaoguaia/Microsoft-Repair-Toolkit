@@ -1,14 +1,37 @@
-#requires -runasadministrator
+﻿#requires -runasadministrator
 Clear-Host
 Write-Host "`n===== Windows 系统维护工具（PowerShell 版） =====" -ForegroundColor Cyan
 
 Function Show-Menu {
     Write-Host ""
+    Write-Host "0. 修复 Windows Update 注册表权限（推荐先运行）"
     Write-Host "1. 修复系统服务权限（如 Windows Update）"
     Write-Host "2. 恢复 Microsoft Store 应用"
     Write-Host "3. 执行系统文件检查（DISM 和 SFC）"
     Write-Host "4. 退出"
     Write-Host ""
+}
+
+Function Fix-ServicePermissions {
+    Write-Host "`n[正在修复注册表权限...]" -ForegroundColor Yellow
+    $setAclPath = "$PSScriptRoot\SetACL.exe"
+
+    if (-not (Test-Path $setAclPath)) {
+        Write-Host "❌ 缺少 SetACL.exe，请将其放在脚本同目录中。" -ForegroundColor Red
+        return
+    }
+
+    Try {
+        & $setAclPath -on "HKLM\SYSTEM\CurrentControlSet\Services\wuauserv" `
+            -ot reg -actn setowner -ownr "n:Administrators"
+        & $setAclPath -on "HKLM\SYSTEM\CurrentControlSet\Services\wuauserv" `
+            -ot reg -actn ace -ace "n:Administrators;p:full"
+
+        Write-Host "✅ 注册表权限已修复。" -ForegroundColor Green
+    }
+    Catch {
+        Write-Host "❌ 权限修改失败，请确保以管理员身份运行。" -ForegroundColor Red
+    }
 }
 
 Function Fix-Services {
@@ -21,7 +44,8 @@ Function Fix-Services {
         Start-Service wuauserv -ErrorAction SilentlyContinue
         Start-Service bits -ErrorAction SilentlyContinue
         Write-Host "✅ 服务修复完成。" -ForegroundColor Green
-    } Catch {
+    }
+    Catch {
         Write-Host "❌ 修复失败，请确保以管理员身份运行。" -ForegroundColor Red
     }
 }
@@ -29,11 +53,12 @@ Function Fix-Services {
 Function Restore-Store {
     Write-Host "`n[正在恢复 Microsoft Store...]" -ForegroundColor Yellow
     Try {
-        Get-AppxPackage -AllUsers Microsoft.WindowsStore | Foreach-Object {
+        Get-AppxPackage -AllUsers Microsoft.WindowsStore | ForEach-Object {
             Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"
         }
         Write-Host "✅ Store 恢复完成。" -ForegroundColor Green
-    } Catch {
+    }
+    Catch {
         Write-Host "❌ Store 恢复失败。" -ForegroundColor Red
     }
 }
@@ -47,8 +72,9 @@ Function Run-DISM {
 
 do {
     Show-Menu
-    $choice = Read-Host "请输入选项编号（1-4）"
+    $choice = Read-Host "请输入选项编号（0-4）"
     switch ($choice) {
+        "0" { Fix-ServicePermissions }
         "1" { Fix-Services }
         "2" { Restore-Store }
         "3" { Run-DISM }
