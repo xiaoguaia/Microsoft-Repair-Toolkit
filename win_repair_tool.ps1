@@ -16,9 +16,19 @@ Function Fix-ServicePermissions {
     Write-Host "`n[正在修复注册表权限...]" -ForegroundColor Yellow
     $setAclPath = "$PSScriptRoot\SetACL.exe"
 
+    # 自动下载 SetACL.exe（首次使用）
     if (-not (Test-Path $setAclPath)) {
-        Write-Host "❌ 缺少 SetACL.exe，请将其放在脚本同目录中。" -ForegroundColor Red
-        return
+        Write-Host "首次使用，正在尝试下载 SetACL.exe ..." -ForegroundColor Yellow
+        $setAclUrl = "https://raw.githubusercontent.com/xiaoguaia/Microsoft-Repair-Toolkit/master/SetACL.exe"
+
+        try {
+            Invoke-WebRequest -Uri $setAclUrl -OutFile $setAclPath -UseBasicParsing
+            Write-Host "✅ SetACL.exe 下载完成。" -ForegroundColor Green
+        }
+        catch {
+            Write-Host "❌ 无法下载 SetACL.exe，请手动将其放入脚本目录中。" -ForegroundColor Red
+            return
+        }
     }
 
     Try {
@@ -33,6 +43,7 @@ Function Fix-ServicePermissions {
         Write-Host "❌ 权限修改失败，请确保以管理员身份运行。" -ForegroundColor Red
     }
 }
+
 
 Function Fix-Services {
     Write-Host "`n[正在修复 Windows Update 和 BITS 服务...]" -ForegroundColor Yellow
