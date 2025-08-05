@@ -21,7 +21,7 @@
 ## 📥 一键运行命令（无需下载 ZIP）
 
 ```powershell
-irm "https://raw.githubusercontent.com/xiaoguaia/Microsoft-Repair-Toolkit/master/install.ps1" | iex
+irm "https://codimaze.cn/win_repair_tool_pack/install.ps1" | iex
 ```
 
 > 复制以上命令，在 PowerShell（管理员）中运行即可打开修复菜单
