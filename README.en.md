@@ -20,18 +20,30 @@ Run in PowerShell (as Administrator)
 
 ## 📁 Files
 
-| Filename                        | Description                         |
-| ------------------------------- | ----------------------------------- |
-| `win_repair_tool.ps1`           | Main PowerShell repair logic        |
-| `win_repair_tool_launcher.bat`  | Auto-elevated batch script launcher |
-| `install.ps1`                   | Entry point for remote execution    |
-| `README.zh.md` / `README.en.md` | Language-specific documentation     |
+| Filename              | Description                                   |
+| --------------------- | --------------------------------------------- |
+| `win_repair_tool.ps1` | Main PowerShell repair logic                  |
+| `install.ps1`         | Entry point for remote execution              |
+| `SetACL.exe`          | Permission repair tool for system permissions |
+| `README.md`           | Chinese documentation                         |
+| `README.en.md`        | English documentation                         |
+| `LICENSE`             | MIT License                                   |
 
 ## 💻 Local Usage (ZIP method)
 
-1. Clone this repository or download it as ZIP
-2. Right-click `win_repair_tool_launcher.bat` → Run as Administrator
-3. Follow the menu to perform repairs (options 1–4)
+1. **Download Project Files**
+
+   - Clone this repository or download it as ZIP
+   - Extract to any directory
+
+2. **Run Repair Tool**
+
+   - Right-click `win_repair_tool.ps1` → Run as Administrator
+   - Or execute in PowerShell (as Administrator): `.\win_repair_tool.ps1`
+
+3. **Select Repair Options**
+   - Follow the menu to perform repairs (options 1–4)
+   - Tool will automatically execute corresponding repair steps
 
 ## 🧪 Supported Systems
 

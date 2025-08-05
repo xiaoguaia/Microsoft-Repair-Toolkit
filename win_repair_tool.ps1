@@ -1,4 +1,13 @@
-﻿#requires -runasadministrator
+﻿# requires -runasadministrator
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+
+if ((Get-ExecutionPolicy) -eq 'Restricted') {
+    Write-Host "⚠️ 当前执行策略为 Restricted，可能导致脚本无法运行。" -ForegroundColor Red
+    Write-Host "请手动执行：Set-ExecutionPolicy RemoteSigned -Scope CurrentUser" -ForegroundColor Yellow
+    pause
+    exit
+}
+
 Clear-Host
 Write-Host "`n===== Windows 系统维护工具（PowerShell 版） =====" -ForegroundColor Cyan
 

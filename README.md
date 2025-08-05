@@ -30,20 +30,32 @@ irm "https://raw.githubusercontent.com/xiaoguaia/Microsoft-Repair-Toolkit/master
 
 ## 📁 文件说明
 
-| 文件名                         | 描述                                       |
-| ------------------------------ | ------------------------------------------ |
-| `win_repair_tool.ps1`          | 主修复逻辑脚本（菜单、功能全）             |
-| `win_repair_tool_launcher.bat` | 自动提权的批处理脚本，执行 PowerShell 脚本 |
-| `install.ps1`                  | 在线一键运行支持                           |
-| `README.md`                    | 当前项目说明                               |
+| 文件名                | 描述                               |
+| --------------------- | ---------------------------------- |
+| `win_repair_tool.ps1` | 主修复逻辑脚本（菜单、功能全）     |
+| `install.ps1`         | 在线一键运行支持                   |
+| `SetACL.exe`          | 权限修复工具，用于修复系统权限问题 |
+| `README.md`           | 当前项目说明                       |
+| `README.en.md`        | 英文版项目说明                     |
+| `LICENSE`             | MIT 开源许可证                     |
 
 ---
 
 ## 📦 使用方法（本地方式）
 
-1. Clone 或下载 ZIP 到本地
-2. 右键 `win_repair_tool_launcher.bat` → **以管理员身份运行**
-3. 根据提示选择需要的操作（1-4）
+1. **下载项目文件**
+
+   - Clone 仓库或下载 ZIP 到本地
+   - 解压到任意目录
+
+2. **运行修复工具**
+
+   - 右键 `win_repair_tool.ps1` → **以管理员身份运行**
+   - 或在 PowerShell（管理员）中执行：`.\win_repair_tool.ps1`
+
+3. **选择修复选项**
+   - 根据菜单提示选择需要的操作（1-4）
+   - 工具会自动执行相应的修复步骤
 
 ---
 
